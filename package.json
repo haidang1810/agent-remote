@@ -1,0 +1,49 @@
+{
+  "name": "agent-remote",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Self-hosted MCP gateway for VPS with dashboard, API keys, and built-in tools",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "dev:web": "cd web && npm run dev",
+    "build": "tsc && cd web && npm run build",
+    "build:server": "tsc && cp -r src/db/migrations dist/db/migrations",
+    "build:web": "cd web && npm run build",
+    "start": "node dist/server.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "mcp",
+    "fastify",
+    "vps",
+    "agent"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/jwt": "^10.0.0",
+    "@fastify/rate-limit": "^10.3.0",
+    "@fastify/static": "^9.0.0",
+    "@fastify/websocket": "^11.2.0",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.6.2",
+    "dockerode": "^4.0.9",
+    "dotenv": "^17.3.1",
+    "fastify": "^5.8.2",
+    "fastify-plugin": "^5.1.0",
+    "systeminformation": "^5.31.4",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/dockerode": "^4.0.1",
+    "@types/node": "^25.5.0",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "app": { "title": "Agent Remote" },
+  "nav": { "overview": "Overview", "keys": "API Keys", "tools": "Tools", "logs": "Logs", "system": "System" },
+  "auth": {
+    "login": "Login", "setup": "Setup", "logout": "Logout",
+    "password": "Password", "confirmPassword": "Confirm Password",
+    "setupTitle": "Setup Admin Password", "loginTitle": "Login to Agent Remote",
+    "setupDesc": "Create an admin password to protect the dashboard", "submit": "Submit"
+  },
+  "overview": {
+    "calls24h": "Calls 24h", "successRate": "Success Rate",
+    "activeKeys": "Active Keys", "enabledTools": "Enabled Tools",
+    "cpu": "CPU", "memory": "Memory", "recentActivity": "Recent Activity"
+  },
+  "keys": {
+    "title": "API Keys", "create": "Create Key", "name": "Name", "prefix": "Prefix",
+    "group": "Group", "status": "Status", "lastUsed": "Last Used",
+    "active": "Active", "inactive": "Inactive", "copyKey": "Copy Key",
+    "keyCreated": "Key created — copy now, won't be shown again!", "delete": "Delete",
+    "rateLimit": "Rate Limit", "expiresAt": "Expires At"
+  },
+  "tools": {
+    "title": "Tools", "enabled": "Enabled", "disabled": "Disabled", "callCount": "Call Count",
+    "risk": "Risk Level", "low": "Low", "medium": "Medium", "high": "High", "critical": "Critical"
+  },
+  "logs": {
+    "title": "Logs", "tool": "Tool", "status": "Status", "duration": "Duration",
+    "time": "Time", "keyName": "API Key", "export": "Export CSV", "filter": "Filter",
+    "success": "Success", "error": "Error", "denied": "Denied"
+  },
+  "system": {
+    "title": "System", "processes": "Processes", "ports": "Ports",
+    "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "Mem%"
+  },
+  "common": { "loading": "Loading...", "error": "Error", "save": "Save", "cancel": "Cancel", "noData": "No data" }
+}

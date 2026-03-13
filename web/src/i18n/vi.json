@@ -1,0 +1,36 @@
+{
+  "app": { "title": "Agent Remote" },
+  "nav": { "overview": "Tổng quan", "keys": "API Keys", "tools": "Công cụ", "logs": "Nhật ký", "system": "Hệ thống" },
+  "auth": {
+    "login": "Đăng nhập", "setup": "Thiết lập", "logout": "Đăng xuất",
+    "password": "Mật khẩu", "confirmPassword": "Xác nhận mật khẩu",
+    "setupTitle": "Thiết lập mật khẩu quản trị", "loginTitle": "Đăng nhập Agent Remote",
+    "setupDesc": "Tạo mật khẩu quản trị để bảo vệ dashboard", "submit": "Xác nhận"
+  },
+  "overview": {
+    "calls24h": "Lượt gọi 24h", "successRate": "Tỉ lệ thành công",
+    "activeKeys": "Keys hoạt động", "enabledTools": "Công cụ bật",
+    "cpu": "CPU", "memory": "RAM", "recentActivity": "Hoạt động gần đây"
+  },
+  "keys": {
+    "title": "API Keys", "create": "Tạo Key", "name": "Tên", "prefix": "Prefix",
+    "group": "Nhóm", "status": "Trạng thái", "lastUsed": "Sử dụng lần cuối",
+    "active": "Hoạt động", "inactive": "Ngưng", "copyKey": "Sao chép key",
+    "keyCreated": "Key đã tạo — sao chép ngay, không hiện lại!", "delete": "Xóa",
+    "rateLimit": "Giới hạn tốc độ", "expiresAt": "Hết hạn"
+  },
+  "tools": {
+    "title": "Công cụ", "enabled": "Bật", "disabled": "Tắt", "callCount": "Lượt gọi",
+    "risk": "Mức rủi ro", "low": "Thấp", "medium": "Trung bình", "high": "Cao", "critical": "Nghiêm trọng"
+  },
+  "logs": {
+    "title": "Nhật ký", "tool": "Công cụ", "status": "Trạng thái", "duration": "Thời gian",
+    "time": "Thời điểm", "keyName": "API Key", "export": "Xuất CSV", "filter": "Lọc",
+    "success": "Thành công", "error": "Lỗi", "denied": "Từ chối"
+  },
+  "system": {
+    "title": "Hệ thống", "processes": "Tiến trình", "ports": "Cổng mạng",
+    "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "RAM%"
+  },
+  "common": { "loading": "Đang tải...", "error": "Lỗi", "save": "Lưu", "cancel": "Hủy", "noData": "Không có dữ liệu" }
+}

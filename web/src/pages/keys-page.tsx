@@ -3,6 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { get, post, put, del } from '../lib/api-client';
 
 const btn = { padding: '8px 16px', background: 'var(--primary)', border: 'none', borderRadius: 6, color: '#fff', cursor: 'pointer', fontWeight: 600 } as const;
+
+function copyText(text: string) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+}
+
 const input = { padding: '8px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 6, color: 'var(--text)' } as const;
 
 interface Permission { tool_name: string; allowed: number }
@@ -116,8 +128,8 @@ export function KeysPage() {
               <pre style={{ background: 'var(--bg)', padding: 12, borderRadius: 6, fontSize: 12, overflow: 'auto', margin: 0 }}>{mcpConfig}</pre>
             </div>
             <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-              <button onClick={() => { navigator.clipboard.writeText(newKey); }} style={{ ...btn, background: 'var(--success)' }}>{t('keys.copyKey')}</button>
-              <button onClick={() => { navigator.clipboard.writeText(mcpConfig); }} style={{ ...btn, background: 'var(--primary)' }}>{t('keys.copyConfig')}</button>
+              <button onClick={() => { copyText(newKey); }} style={{ ...btn, background: 'var(--success)' }}>{t('keys.copyKey')}</button>
+              <button onClick={() => { copyText(mcpConfig); }} style={{ ...btn, background: 'var(--primary)' }}>{t('keys.copyConfig')}</button>
               <button onClick={() => setNewKey(null)} style={{ ...btn, background: 'var(--bg-hover)' }}>{t('common.close')}</button>
             </div>
           </div>

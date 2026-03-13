@@ -20,17 +20,25 @@ Self-hosted MCP gateway for VPS with dashboard, API keys, and 51 granular tools.
 npm install
 cd web && npm install && cd ..
 
-# Build
+# Build (server + frontend)
 npm run build
 
-# Start (development)
-npm run dev
-
-# Start (production with PM2)
+# Start (production with PM2) — single process serves both API and dashboard
 pm2 start ecosystem.config.cjs
 ```
 
-Dashboard: `http://localhost:3927`
+Dashboard + API: `http://localhost:3927`
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run build` | Build server + frontend (production) |
+| `npm run build:server` | Build server only |
+| `npm run build:web` | Build frontend only |
+| `npm run dev` | Start server in dev mode (tsx watch) |
+| `npm run dev:web` | Start frontend dev server (Vite HMR) |
+| `npm start` | Start production server (requires build) |
 
 ## Configuration
 
@@ -47,6 +55,8 @@ ALLOWED_PATHS=/home:/var/www:/var/log:/opt:/etc/nginx:/tmp:/srv
 ```
 
 ## MCP Client Config
+
+Add to your Claude Code (`~/.claude.json`) or Cursor MCP settings:
 
 ```json
 {
@@ -179,13 +189,9 @@ ALLOWED_PATHS=/home:/var/www:/var/log:/opt:/etc/nginx:/tmp:/srv
 | `nginx_test_config` | low | Test nginx configuration |
 | `nginx_site_config` | low | Read site config file |
 
-## Permission Groups
+## Permissions
 
-| Group | Access | Risk Levels |
-|-------|--------|-------------|
-| **read** | Read-only monitoring | low |
-| **write** | Read + modify operations | low, medium, high |
-| **admin** | Full access | low, medium, high, critical |
+Each API key has **per-tool permissions**. By default, a new key can access all globally enabled tools. Use the dashboard to enable/disable specific tools for each key.
 
 ## Tech Stack
 

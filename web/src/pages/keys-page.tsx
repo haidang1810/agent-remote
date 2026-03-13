@@ -104,13 +104,25 @@ export function KeysPage() {
         <button style={btn} onClick={() => setShowCreate(true)}>{t('keys.create')}</button>
       </div>
 
-      {newKey && (
-        <div style={{ background: '#14532d', padding: 16, borderRadius: 8, marginBottom: 16 }}>
-          <p style={{ fontWeight: 600, marginBottom: 8 }}>{t('keys.keyCreated')}</p>
-          <code style={{ background: 'var(--bg)', padding: '8px 12px', borderRadius: 6, display: 'block', wordBreak: 'break-all' }}>{newKey}</code>
-          <button onClick={() => { navigator.clipboard.writeText(newKey); setNewKey(null); }} style={{ ...btn, marginTop: 8, background: 'var(--success)' }}>{t('keys.copyKey')}</button>
-        </div>
-      )}
+      {newKey && (() => {
+        const mcpUrl = `${window.location.origin}/mcp`;
+        const mcpConfig = JSON.stringify({ mcpServers: { 'agent-remote': { url: mcpUrl, headers: { 'x-api-key': newKey } } } }, null, 2);
+        return (
+          <div style={{ background: '#14532d', padding: 16, borderRadius: 8, marginBottom: 16 }}>
+            <p style={{ fontWeight: 600, marginBottom: 8 }}>{t('keys.keyCreated')}</p>
+            <code style={{ background: 'var(--bg)', padding: '8px 12px', borderRadius: 6, display: 'block', wordBreak: 'break-all' }}>{newKey}</code>
+            <div style={{ marginTop: 12 }}>
+              <p style={{ fontSize: 13, marginBottom: 6, color: 'var(--text-muted)' }}>{t('keys.mcpGuide')}</p>
+              <pre style={{ background: 'var(--bg)', padding: 12, borderRadius: 6, fontSize: 12, overflow: 'auto', margin: 0 }}>{mcpConfig}</pre>
+            </div>
+            <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+              <button onClick={() => { navigator.clipboard.writeText(newKey); }} style={{ ...btn, background: 'var(--success)' }}>{t('keys.copyKey')}</button>
+              <button onClick={() => { navigator.clipboard.writeText(mcpConfig); }} style={{ ...btn, background: 'var(--primary)' }}>{t('keys.copyConfig')}</button>
+              <button onClick={() => setNewKey(null)} style={{ ...btn, background: 'var(--bg-hover)' }}>{t('common.close')}</button>
+            </div>
+          </div>
+        );
+      })()}
 
       {showCreate && (
         <div style={{ background: 'var(--bg-card)', padding: 20, borderRadius: 8, marginBottom: 16 }}>

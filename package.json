@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "dev:web": "cd web && npm run dev",
-    "build": "tsc && cd web && npm run build",
+    "build": "tsc && cp -r src/db/migrations dist/db/migrations && cd web && npm run build",
     "build:server": "tsc && cp -r src/db/migrations dist/db/migrations",
     "build:web": "cd web && npm run build",
     "start": "node dist/server.js",

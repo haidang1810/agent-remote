@@ -18,7 +18,9 @@
     "active": "Hoạt động", "inactive": "Ngưng", "copyKey": "Sao chép key",
     "keyCreated": "Key đã tạo — sao chép ngay, không hiện lại!", "delete": "Xóa",
     "rateLimit": "Giới hạn tốc độ", "expiresAt": "Hết hạn",
-    "toolPermissions": "Quyền công cụ", "filterTools": "Tìm công cụ..."
+    "toolPermissions": "Quyền công cụ", "filterTools": "Tìm công cụ...",
+    "mcpGuide": "Thêm vào cấu hình MCP client (Claude Code, Cursor...):",
+    "copyConfig": "Sao chép config"
   },
   "tools": {
     "title": "Công cụ", "enabled": "Bật", "disabled": "Tắt", "callCount": "Lượt gọi",
@@ -33,5 +35,5 @@
     "title": "Hệ thống", "processes": "Tiến trình", "ports": "Cổng mạng",
     "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "RAM%"
   },
-  "common": { "loading": "Đang tải...", "error": "Lỗi", "save": "Lưu", "cancel": "Hủy", "noData": "Không có dữ liệu" }
+  "common": { "loading": "Đang tải...", "error": "Lỗi", "save": "Lưu", "cancel": "Hủy", "close": "Đóng", "noData": "Không có dữ liệu" }
 }

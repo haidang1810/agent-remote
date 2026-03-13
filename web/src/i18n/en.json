@@ -18,7 +18,9 @@
     "active": "Active", "inactive": "Inactive", "copyKey": "Copy Key",
     "keyCreated": "Key created — copy now, won't be shown again!", "delete": "Delete",
     "rateLimit": "Rate Limit", "expiresAt": "Expires At",
-    "toolPermissions": "Tool Permissions", "filterTools": "Filter tools..."
+    "toolPermissions": "Tool Permissions", "filterTools": "Filter tools...",
+    "mcpGuide": "Add to your MCP client config (Claude Code, Cursor...):",
+    "copyConfig": "Copy Config"
   },
   "tools": {
     "title": "Tools", "enabled": "Enabled", "disabled": "Disabled", "callCount": "Call Count",
@@ -33,5 +35,5 @@
     "title": "System", "processes": "Processes", "ports": "Ports",
     "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "Mem%"
   },
-  "common": { "loading": "Loading...", "error": "Error", "save": "Save", "cancel": "Cancel", "noData": "No data" }
+  "common": { "loading": "Loading...", "error": "Error", "save": "Save", "cancel": "Cancel", "close": "Close", "noData": "No data" }
 }

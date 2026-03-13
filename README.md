@@ -5,11 +5,11 @@ Self-hosted MCP gateway for VPS with dashboard, API keys, and 51 granular tools.
 ## Features
 
 - **MCP Server** — Streamable HTTP transport at `/mcp`, compatible with Claude Code, Cursor, etc.
-- **API Key Management** — Generate keys with permission groups (read/write/admin), per-key tool overrides
+- **API Key Management** — Generate keys with per-key tool permissions, MCP config auto-generated
 - **51 Granular Tools** — System, filesystem, Docker, services, network, SSL, Git, PM2, Nginx, and more
-- **Dashboard** — React SPA with login, tool management, audit logs, live system metrics
-- **3-tier Permissions** — Global tool toggle → key group → per-key overrides
-- **Filesystem Whitelist** — Configurable allowed directories for filesystem operations
+- **Dashboard** — React SPA with login, key management, tool permissions, audit logs, live system metrics
+- **Per-key Permissions** — Enable/disable specific tools for each API key via dashboard
+- **Filesystem Whitelist** — Manage allowed directories from dashboard (no restart needed)
 - **Realtime** — WebSocket for live log streaming and system metrics
 - **Bilingual** — Vietnamese + English
 

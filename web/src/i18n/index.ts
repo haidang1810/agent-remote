@@ -5,7 +5,7 @@ import en from './en.json';
 
 i18n.use(initReactI18next).init({
   resources: { vi: { translation: vi }, en: { translation: en } },
-  lng: localStorage.getItem('lang') || 'vi',
+  lng: localStorage.getItem('lang') || 'en',
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
 });

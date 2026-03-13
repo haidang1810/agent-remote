@@ -8,6 +8,7 @@ import { registerAuthRoutes } from './api/auth-routes.js';
 import { isInitialized, setupPassword } from './auth/admin-auth.js';
 import { registerMcpRoutes } from './mcp/mcp-server.js';
 import { registerAllTools } from './tools/register-all-tools.js';
+import { initPathWhitelist } from './tools/_shared/path-whitelist.js';
 import { registerKeysRoutes } from './api/keys-routes.js';
 import { registerToolsRoutes } from './api/tools-routes.js';
 import { registerLogsRoutes } from './api/logs-routes.js';
@@ -41,6 +42,7 @@ async function bootstrap(): Promise<void> {
     app.log.info('Admin password initialized from ADMIN_PASSWORD env');
   }
 
+  initPathWhitelist(app.db);
   registerAllTools(app.db);
   await registerMcpRoutes(app);
 

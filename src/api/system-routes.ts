@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import os from 'node:os';
 import si from 'systeminformation';
+import { getAllowedPaths, setAllowedPaths } from '../tools/_shared/path-whitelist.js';
 
 export async function registerSystemRoutes(app: FastifyInstance): Promise<void> {
   app.addHook('onRequest', app.authenticate);
@@ -52,6 +53,20 @@ export async function registerSystemRoutes(app: FastifyInstance): Promise<void> 
         pid: c.pid,
       })),
     };
+  });
+
+  // GET /api/system/allowed-paths
+  app.get('/api/system/allowed-paths', async () => {
+    return { data: getAllowedPaths() };
+  });
+
+  // PUT /api/system/allowed-paths
+  app.put<{ Body: { paths: string[] } }>('/api/system/allowed-paths', async (request, reply) => {
+    const { paths } = request.body;
+    if (!Array.isArray(paths)) return reply.status(400).send({ error: 'paths must be an array' });
+    const clean = paths.map((p) => p.trim()).filter(Boolean);
+    setAllowedPaths(app.db, clean);
+    return { data: clean };
   });
 
   // GET /api/system/docker

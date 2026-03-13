@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { get } from '../lib/api-client';
+import { get, put } from '../lib/api-client';
 import { useWebSocket } from '../hooks/use-websocket';
 
 const card = { background: 'var(--bg-card)', padding: '1.25rem', borderRadius: 10, flex: 1, minWidth: 150 } as const;
@@ -11,13 +11,31 @@ export function SystemPage() {
   const [procs, setProcs] = useState<any[]>([]);
   const [ports, setPorts] = useState<any[]>([]);
   const [docker, setDocker] = useState<any[]>([]);
+  const [allowedPaths, setAllowedPaths] = useState<string[]>([]);
+  const [newPath, setNewPath] = useState('');
 
   useEffect(() => {
     get<{ data: any }>('/api/system/stats').then((r) => setStats(r.data));
     get<{ data: any[] }>('/api/system/processes').then((r) => setProcs(r.data));
     get<{ data: any[] }>('/api/system/ports').then((r) => setPorts(r.data));
     get<{ data: any[] }>('/api/system/docker').then((r) => setDocker(r.data)).catch(() => {});
+    get<{ data: string[] }>('/api/system/allowed-paths').then((r) => setAllowedPaths(r.data));
   }, []);
+
+  const addPath = async () => {
+    const p = newPath.trim();
+    if (!p || allowedPaths.includes(p)) return;
+    const updated = [...allowedPaths, p];
+    await put('/api/system/allowed-paths', { paths: updated });
+    setAllowedPaths(updated);
+    setNewPath('');
+  };
+
+  const removePath = async (path: string) => {
+    const updated = allowedPaths.filter((p) => p !== path);
+    await put('/api/system/allowed-paths', { paths: updated });
+    setAllowedPaths(updated);
+  };
 
   const onMsg = useCallback((msg: any) => {
     if (msg.type === 'system') setStats((s: any) => s ? { ...s, cpu: { ...s.cpu, load: msg.data.cpuLoad }, memory: { ...s.memory, percent: msg.data.memoryPercent } } : s);
@@ -68,6 +86,23 @@ export function SystemPage() {
           </tr>
         ))}</tbody>
       </table>
+
+      <h3 style={{ marginBottom: 12 }}>{t('system.allowedPaths')}</h3>
+      <div style={{ background: 'var(--bg-card)', padding: 16, borderRadius: 8, marginBottom: 24 }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+          <input value={newPath} onChange={(e) => setNewPath(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && addPath()} placeholder="/path/to/allow" style={{ flex: 1, padding: '8px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 6, color: 'var(--text)' }} />
+          <button onClick={addPath} style={{ padding: '8px 16px', background: 'var(--primary)', border: 'none', borderRadius: 6, color: '#fff', cursor: 'pointer', fontWeight: 600 }}>{t('system.addPath')}</button>
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {allowedPaths.map((p) => (
+            <span key={p} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 10px', background: 'var(--bg)', borderRadius: 6, fontSize: 13, fontFamily: 'monospace' }}>
+              {p}
+              <button onClick={() => removePath(p)} style={{ background: 'none', border: 'none', color: 'var(--danger)', cursor: 'pointer', fontSize: 14, padding: 0, lineHeight: 1 }}>&times;</button>
+            </span>
+          ))}
+        </div>
+        {allowedPaths.length === 0 && <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>{t('system.noPathsConfigured')}</p>}
+      </div>
 
       {docker.length > 0 && (<>
         <h3 style={{ marginBottom: 12 }}>{t('system.docker')}</h3>

@@ -33,7 +33,8 @@
   },
   "system": {
     "title": "Hệ thống", "processes": "Tiến trình", "ports": "Cổng mạng",
-    "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "RAM%"
+    "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "RAM%",
+    "allowedPaths": "Thư mục được phép truy cập", "addPath": "Thêm", "noPathsConfigured": "Chưa cấu hình thư mục nào"
   },
   "common": { "loading": "Đang tải...", "error": "Lỗi", "save": "Lưu", "cancel": "Hủy", "close": "Đóng", "noData": "Không có dữ liệu" }
 }

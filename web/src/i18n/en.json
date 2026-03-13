@@ -33,7 +33,8 @@
   },
   "system": {
     "title": "System", "processes": "Processes", "ports": "Ports",
-    "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "Mem%"
+    "docker": "Docker", "pid": "PID", "cpuPercent": "CPU%", "memPercent": "Mem%",
+    "allowedPaths": "Allowed Filesystem Paths", "addPath": "Add", "noPathsConfigured": "No paths configured"
   },
   "common": { "loading": "Loading...", "error": "Error", "save": "Save", "cancel": "Cancel", "close": "Close", "noData": "No data" }
 }

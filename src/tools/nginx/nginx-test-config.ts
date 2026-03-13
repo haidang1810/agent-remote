@@ -1,5 +1,4 @@
 import type Database from 'better-sqlite3';
-import { z } from 'zod';
 import { textResult, errorResult } from '../_shared/tool-helpers.js';
 import { addToolDefinition } from '../../mcp/tool-registry.js';
 import { upsertTool } from '../../db/models/tool-model.js';
@@ -16,9 +15,7 @@ export function registerNginxTestConfigTool(db: Database.Database): void {
   addToolDefinition({
     name: 'nginx_test_config',
     description: 'Test nginx configuration syntax and report errors',
-    schema: {
-      _placeholder: z.undefined().optional(),
-    },
+    schema: {},
     async handler(_args) {
       try {
         // Try without sudo first, fall back to sudo

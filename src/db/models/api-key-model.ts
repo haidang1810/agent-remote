@@ -15,13 +15,12 @@ export function findKeyByHash(db: Database.Database, hash: string): ApiKey | nul
 
 export function createKey(db: Database.Database, data: CreateApiKeyInput): ApiKey {
   const result = db.prepare(
-    `INSERT INTO api_keys (name, key_hash, key_prefix, permission_group, expires_at, rate_limit)
-     VALUES (?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO api_keys (name, key_hash, key_prefix, expires_at, rate_limit)
+     VALUES (?, ?, ?, ?, ?)`,
   ).run(
     data.name,
     data.key_hash,
     data.key_prefix,
-    data.permission_group ?? 'read',
     data.expires_at ?? null,
     data.rate_limit ?? 60,
   );
@@ -31,7 +30,7 @@ export function createKey(db: Database.Database, data: CreateApiKeyInput): ApiKe
 export function updateKey(
   db: Database.Database,
   id: number,
-  data: Partial<Pick<ApiKey, 'name' | 'permission_group' | 'active' | 'expires_at' | 'rate_limit'>>,
+  data: Partial<Pick<ApiKey, 'name' | 'active' | 'expires_at' | 'rate_limit'>>,
 ): ApiKey | null {
   const fields: string[] = [];
   const values: unknown[] = [];

@@ -1,5 +1,4 @@
 import type Database from 'better-sqlite3';
-import { z } from 'zod';
 import { textResult, errorResult } from '../_shared/tool-helpers.js';
 import { addToolDefinition } from '../../mcp/tool-registry.js';
 import { upsertTool } from '../../db/models/tool-model.js';
@@ -47,9 +46,7 @@ export function registerPm2ListTool(db: Database.Database): void {
   addToolDefinition({
     name: 'pm2_list',
     description: 'List all PM2 managed processes with their status, CPU, memory, and uptime',
-    schema: {
-      _placeholder: z.undefined().optional(),
-    },
+    schema: {},
     async handler(_args) {
       try {
         const output = await safeExec('pm2 jlist');

@@ -5,7 +5,7 @@ import { SetupPage } from './pages/setup-page';
 import { LoginPage } from './pages/login-page';
 import { OverviewPage } from './pages/overview-page';
 import { KeysPage } from './pages/keys-page';
-import { ToolsPage } from './pages/tools-page';
+
 import { LogsPage } from './pages/logs-page';
 import { SystemPage } from './pages/system-page';
 
@@ -23,7 +23,7 @@ export default function App() {
         <Route element={<AppLayout onLogout={logout} />}>
           <Route path="/" element={<OverviewPage />} />
           <Route path="/keys" element={<KeysPage />} />
-          <Route path="/tools" element={<ToolsPage />} />
+
           <Route path="/logs" element={<LogsPage />} />
           <Route path="/system" element={<SystemPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

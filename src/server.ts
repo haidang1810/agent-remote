@@ -5,6 +5,7 @@ import { registerRateLimit } from './plugins/rate-limit.js';
 import dbPlugin from './plugins/db.js';
 import jwtPlugin from './plugins/jwt.js';
 import { registerAuthRoutes } from './api/auth-routes.js';
+import { isInitialized, setupPassword } from './auth/admin-auth.js';
 import { registerMcpRoutes } from './mcp/mcp-server.js';
 import { registerAllTools } from './tools/register-all-tools.js';
 import { registerKeysRoutes } from './api/keys-routes.js';
@@ -33,6 +34,12 @@ async function bootstrap(): Promise<void> {
   await app.register(dbPlugin);
   await app.register(jwtPlugin);
   await registerAuthRoutes(app);
+
+  // Auto-seed admin password from env on first boot
+  if (!isInitialized(app.db) && config.adminPassword) {
+    await setupPassword(app.db, config.adminPassword);
+    app.log.info('Admin password initialized from ADMIN_PASSWORD env');
+  }
 
   registerAllTools(app.db);
   await registerMcpRoutes(app);

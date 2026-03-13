@@ -1,6 +1,5 @@
 import os from 'node:os';
 import si from 'systeminformation';
-import { z } from 'zod';
 import { textResult, errorResult } from '../_shared/tool-helpers.js';
 import { addToolDefinition } from '../../mcp/tool-registry.js';
 import { upsertTool } from '../../db/models/tool-model.js';

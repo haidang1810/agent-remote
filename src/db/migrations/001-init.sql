@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS api_keys (
   name TEXT NOT NULL,
   key_hash TEXT NOT NULL UNIQUE,
   key_prefix TEXT NOT NULL,
-  permission_group TEXT NOT NULL DEFAULT 'read',
   active INTEGER NOT NULL DEFAULT 1,
   expires_at INTEGER,
   rate_limit INTEGER NOT NULL DEFAULT 60,

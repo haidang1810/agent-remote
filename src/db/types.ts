@@ -9,7 +9,6 @@ export interface ApiKey {
   name: string;
   key_hash: string;
   key_prefix: string;
-  permission_group: 'read' | 'write' | 'admin';
   active: number;
   expires_at: number | null;
   rate_limit: number;
@@ -63,7 +62,6 @@ export interface CreateApiKeyInput {
   name: string;
   key_hash: string;
   key_prefix: string;
-  permission_group?: string;
   expires_at?: number | null;
   rate_limit?: number;
 }

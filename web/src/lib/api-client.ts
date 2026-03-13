@@ -15,7 +15,7 @@ export function clearToken(): void {
 export async function api<T>(path: string, opts: RequestInit = {}): Promise<T> {
   const token = getToken();
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
+    ...(opts.body ? { 'Content-Type': 'application/json' } : {}),
     ...(opts.headers as Record<string, string>),
   };
   if (token) headers['Authorization'] = `Bearer ${token}`;

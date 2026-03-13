@@ -4,7 +4,7 @@ import {
   findAllKeys, findKeyById, createKey, updateKey, deleteKey,
   findPermissions, setPermission, deletePermission,
 } from '../db/models/api-key-model.js';
-import type { ApiKey } from '../db/types.js';
+
 
 export async function registerKeysRoutes(app: FastifyInstance): Promise<void> {
   // All routes require JWT
@@ -19,16 +19,15 @@ export async function registerKeysRoutes(app: FastifyInstance): Promise<void> {
   });
 
   // POST /api/keys — create new key
-  app.post<{ Body: { name: string; permissionGroup?: string; expiresAt?: number; rateLimit?: number } }>(
+  app.post<{ Body: { name: string; expiresAt?: number; rateLimit?: number } }>(
     '/api/keys',
     async (request) => {
-      const { name, permissionGroup, expiresAt, rateLimit } = request.body;
+      const { name, expiresAt, rateLimit } = request.body;
       const plaintext = generateApiKey();
       const key = createKey(app.db, {
         name,
         key_hash: hashApiKey(plaintext),
         key_prefix: plaintext.slice(0, 8),
-        permission_group: permissionGroup,
         expires_at: expiresAt,
         rate_limit: rateLimit,
       });
@@ -50,10 +49,9 @@ export async function registerKeysRoutes(app: FastifyInstance): Promise<void> {
     '/api/keys/:id',
     async (request, reply) => {
       const id = Number(request.params.id);
-      const { name, permissionGroup, active, expiresAt, rateLimit } = request.body as Record<string, unknown>;
+      const { name, active, expiresAt, rateLimit } = request.body as Record<string, unknown>;
       const updated = updateKey(app.db, id, {
         ...(name !== undefined && { name: name as string }),
-        ...(permissionGroup !== undefined && { permission_group: permissionGroup as ApiKey['permission_group'] }),
         ...(active !== undefined && { active: active as number }),
         ...(expiresAt !== undefined && { expires_at: expiresAt as number | null }),
         ...(rateLimit !== undefined && { rate_limit: rateLimit as number }),

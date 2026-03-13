@@ -17,7 +17,8 @@
     "group": "Nhóm", "status": "Trạng thái", "lastUsed": "Sử dụng lần cuối",
     "active": "Hoạt động", "inactive": "Ngưng", "copyKey": "Sao chép key",
     "keyCreated": "Key đã tạo — sao chép ngay, không hiện lại!", "delete": "Xóa",
-    "rateLimit": "Giới hạn tốc độ", "expiresAt": "Hết hạn"
+    "rateLimit": "Giới hạn tốc độ", "expiresAt": "Hết hạn",
+    "toolPermissions": "Quyền công cụ", "filterTools": "Tìm công cụ..."
   },
   "tools": {
     "title": "Công cụ", "enabled": "Bật", "disabled": "Tắt", "callCount": "Lượt gọi",

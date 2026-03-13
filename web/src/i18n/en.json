@@ -17,7 +17,8 @@
     "group": "Group", "status": "Status", "lastUsed": "Last Used",
     "active": "Active", "inactive": "Inactive", "copyKey": "Copy Key",
     "keyCreated": "Key created — copy now, won't be shown again!", "delete": "Delete",
-    "rateLimit": "Rate Limit", "expiresAt": "Expires At"
+    "rateLimit": "Rate Limit", "expiresAt": "Expires At",
+    "toolPermissions": "Tool Permissions", "filterTools": "Filter tools..."
   },
   "tools": {
     "title": "Tools", "enabled": "Enabled", "disabled": "Disabled", "callCount": "Call Count",

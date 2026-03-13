@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 const links = [
   { to: '/', key: 'overview', icon: '📊' },
   { to: '/keys', key: 'keys', icon: '🔑' },
-  { to: '/tools', key: 'tools', icon: '🔧' },
+
   { to: '/logs', key: 'logs', icon: '📋' },
   { to: '/system', key: 'system', icon: '💻' },
 ];

@@ -16,6 +16,7 @@ function copyText(text: string) {
 }
 
 const input = { padding: '8px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 6, color: 'var(--text)' } as const;
+const riskColors: Record<string, string> = { low: 'var(--success)', medium: 'var(--warning)', high: '#f97316', critical: 'var(--danger)' };
 
 interface Permission { tool_name: string; allowed: number }
 interface ToolInfo { name: string; category: string; description: string; risk_level: string; enabled: number }
@@ -201,7 +202,10 @@ export function KeysPage() {
                       display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     }}>
                       <div>
-                        <div style={{ fontWeight: 500, fontSize: 13 }}>{tool.name}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <span style={{ fontWeight: 500, fontSize: 13 }}>{tool.name}</span>
+                          <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, border: `1px solid ${riskColors[tool.risk_level] || 'var(--text-muted)'}`, color: riskColors[tool.risk_level] || 'var(--text-muted)' }}>{tool.risk_level}</span>
+                        </div>
                         <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>{tool.description}</div>
                       </div>
                       <div style={{
